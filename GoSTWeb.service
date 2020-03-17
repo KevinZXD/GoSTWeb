@@ -1,0 +1,20 @@
+[Unit]
+Description=GoSTWeb
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Restart=always
+RestartSec=10s
+ExecStart=/bin/webapp -h 0.0.0.0 --pid-file  /var/run/GoSTWeb.pid
+ExecStartPost=/bin/bash /register.sh
+WorkingDirectory=/bin
+ExecReload=/bin/kill -12 $MAINPID
+KillSignal=SIGINT
+LimitNOFILE=65536
+LimitCORE=infinity
+PIDFile=/var/run/GoSTWeb.pid
+
+[Install]
+WantedBy=multi-user.target
+
