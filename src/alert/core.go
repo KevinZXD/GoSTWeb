@@ -1,5 +1,5 @@
 
-package alert
+package main
 
 import (
 "bytes"
@@ -126,4 +126,5 @@ func getLocalIp() (string, error) {
 	localAddr := conn.LocalAddr().(*net.UDPAddr)
 	return localAddr.IP.To4().String(), nil
 }
+
 
